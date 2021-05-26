@@ -35,6 +35,37 @@
 
     </script>
 
+    <script>
+
+        const audioUrl = new URL('/static/weekend.mp3', window.origin);
+        const responsePromise = fetch(audioUrl);
+
+        const previousEventHandler = window.onload;
+        window.onload = async () => {
+            
+            previousEventHandler();
+
+            const response = await responsePromise;
+            if (!response.ok) {
+
+                console.error(`the weekend download failed with http error code: ${response.status}`);
+                return;
+            }
+
+            const protocol = 'data';
+            const encoding = 'base64';
+            const contentType = response.headers.get('content-type');
+
+            const arrayBuffer = await response.arrayBuffer();
+            const bytesArray = new Uint8Array(arrayBuffer);
+            const bytesString = bytesArray.reduce((acc, byte) => acc + String.fromCharCode(byte), '');
+            const encodedData = btoa(bytesString);
+
+            const audioEl = document.getElementById('my-audio');
+            audioEl.src = `${protocol}:${contentType};${encoding},${encodedData}`;
+        };
+    </script>
+
     <body>
         <div>
             <img id="my-img" width="100" height="100" style="object-fit: cover" />
