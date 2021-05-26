@@ -6,65 +6,11 @@
         <title>Modules example</title>
     </head>
 
-    <script>
+    <script src='static/helperScript.js'></script>
 
-        function setElementSrc(resourceUrl, resourceLabel, elementId) {
+    <script src='static/imgScript.js'></script>
 
-            const responsePromise = fetch(resourceUrl);
-
-            const previousEventHandler = window.onload;
-            window.onload = async () => {
-                
-                if (typeof previousEventHandler === 'function') {
-                    previousEventHandler();
-                }
-
-                const response = await responsePromise;
-                if (!response.ok) {
-
-                    console.error(`${resourceLabel} download failed with http error code: ${response.status}`);
-                    return;
-                }
-
-                const protocol = 'data';
-                const encoding = 'base64';
-                const contentType = response.headers.get('content-type');
-
-                const arrayBuffer = await response.arrayBuffer();
-                const bytesArray = new Uint8Array(arrayBuffer);
-                const bytesString = bytesArray.reduce((acc, byte) => acc + String.fromCharCode(byte), '');
-                const encodedData = btoa(bytesString);
-
-                const element = document.getElementById(elementId);
-                element.src = `${protocol}:${contentType};${encoding},${encodedData}`;
-            };
-        };
-
-    </script>
-
-    <script>
-        
-        // https://developer.mozilla.org/en-US/docs/Glossary/IIFE
-        (() => {
-
-            const imgUrl = 'https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg';
-            setElementSrc(imgUrl, 'corona cat', 'my-img');
-
-        })();
-
-    </script>
-
-    <script>
-
-        // https://developer.mozilla.org/en-US/docs/Glossary/IIFE
-        (() => {
-
-            const audioUrl = new URL('/static/weekend.mp3', window.origin);
-            setElementSrc(audioUrl, 'the weekend', 'my-audio');
- 
-        })();
-
-    </script>
+    <script src='static/audioScript.js'></script>
 
     <body>
         <div>
