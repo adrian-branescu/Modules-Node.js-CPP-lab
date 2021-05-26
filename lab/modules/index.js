@@ -19,6 +19,8 @@ import { encodeBase64 } from 'esm-example';
 const url = import.meta.url;
 const __dirname = dirname(fileURLToPath(url));
 
+const { encodeBase64 } = require('cjs-example');
+
 const audioFilePath = join(__dirname, 'www', 'static', 'weekend.mp3');
 
 (async () => {
