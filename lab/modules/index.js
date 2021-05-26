@@ -8,6 +8,8 @@ const { join } = require('path');
 // https://www.npmjs.com/package/btoa
 const btoa = require('btoa');
 
+const { encodeBase64 } = require('cjs-example');
+
 const audioFilePath = join(__dirname, 'www', 'static', 'weekend.mp3');
 
 (async () => {
@@ -17,12 +19,7 @@ const audioFilePath = join(__dirname, 'www', 'static', 'weekend.mp3');
     const nodejsBuffer = await fs.readFile(audioFilePath);
     const arrayBuffer = nodejsBuffer.buffer;
 
-    ////////////////////// Same code as in browser //////////////////////
-    const bytesArray = new Uint8Array(arrayBuffer);
-    const bytesString = bytesArray.reduce((acc, byte) => acc + String.fromCharCode(byte), '');
-    const encodedData = btoa(bytesString);
-    ////////////////////////////////////////////////////////////////////
-
+    const encodedData = encodeBase64(btoa, arrayBuffer);
     console.log(`encodedData.length = ${encodedData.length}`);
 
 })();

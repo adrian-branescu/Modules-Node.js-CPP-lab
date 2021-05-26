@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "btoa": "^1.2.1",
+    "cjs-example": "file:nodejs/cjs-example",
     "serve": "^13.0.2"
   },
   "type": "commonjs"
