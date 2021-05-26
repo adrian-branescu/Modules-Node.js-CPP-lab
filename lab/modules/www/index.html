@@ -7,19 +7,22 @@
     </head>
 
     <script>
-        
-        // https://developer.mozilla.org/en-US/docs/Glossary/IIFE
-        (() => {
 
-            const imgUrl = 'https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg';
-            const responsePromise = fetch(imgUrl);
+        function setElementSrc(resourceUrl, resourceLabel, elementId) {
 
+            const responsePromise = fetch(resourceUrl);
+
+            const previousEventHandler = window.onload;
             window.onload = async () => {
+                
+                if (typeof previousEventHandler === 'function') {
+                    previousEventHandler();
+                }
 
                 const response = await responsePromise;
                 if (!response.ok) {
 
-                    console.error(`corona cat download failed with http error code: ${response.status}`);
+                    console.error(`${resourceLabel} download failed with http error code: ${response.status}`);
                     return;
                 }
 
@@ -32,9 +35,20 @@
                 const bytesString = bytesArray.reduce((acc, byte) => acc + String.fromCharCode(byte), '');
                 const encodedData = btoa(bytesString);
 
-                const imgEl = document.getElementById('my-img');
-                imgEl.src = `${protocol}:${contentType};${encoding},${encodedData}`;
+                const element = document.getElementById(elementId);
+                element.src = `${protocol}:${contentType};${encoding},${encodedData}`;
             };
+        };
+
+    </script>
+
+    <script>
+        
+        // https://developer.mozilla.org/en-US/docs/Glossary/IIFE
+        (() => {
+
+            const imgUrl = 'https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg';
+            setElementSrc(imgUrl, 'corona cat', 'my-img');
 
         })();
 
@@ -46,33 +60,8 @@
         (() => {
 
             const audioUrl = new URL('/static/weekend.mp3', window.origin);
-            const responsePromise = fetch(audioUrl);
-
-            const previousEventHandler = window.onload;
-            window.onload = async () => {
-                
-                previousEventHandler();
-
-                const response = await responsePromise;
-                if (!response.ok) {
-
-                    console.error(`the weekend download failed with http error code: ${response.status}`);
-                    return;
-                }
-
-                const protocol = 'data';
-                const encoding = 'base64';
-                const contentType = response.headers.get('content-type');
-
-                const arrayBuffer = await response.arrayBuffer();
-                const bytesArray = new Uint8Array(arrayBuffer);
-                const bytesString = bytesArray.reduce((acc, byte) => acc + String.fromCharCode(byte), '');
-                const encodedData = btoa(bytesString);
-
-                const audioEl = document.getElementById('my-audio');
-                audioEl.src = `${protocol}:${contentType};${encoding},${encodedData}`;
-            };
-
+            setElementSrc(audioUrl, 'the weekend', 'my-audio');
+ 
         })();
 
     </script>
