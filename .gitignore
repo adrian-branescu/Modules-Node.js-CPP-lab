@@ -5,4 +5,11 @@ package-lock.json
 # Typescript related
 *.d.ts
 *.js.map
-nodejs/**/*.js
+lab/modules/nodejs/cjs-example/*.js
+lab/modules/nodejs/esm-example/*.js
+
+# IDE related
+.vscode
+
+# CMake related
+lab/cpp/my-sqrt-lib/**/build
