@@ -19,7 +19,7 @@ Call the generated Makefile to actually compile (& link) the project:
 make -j<number-of-cores>
 ```
 
-Install the Shared Library to the System Share Libraries search path:
+Install the shared library to system shared libraries search paths
 ```bash
 make install
 ```

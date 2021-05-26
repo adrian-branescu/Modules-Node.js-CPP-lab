@@ -18,12 +18,12 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     SOVERSION 1
     PUBLIC_HEADER include/mymath.h)
 
-# set System Loader search path
+# set system loader search path
 set(LIBRARY_DESTINATION /usr/local/lib/)
-# set System Linker search path
+# set system public headers search path
 set(HEADERS_DESTINATION /usr/local/include/)
 
-# copy the shared library to System Loader search path & the public headers to System Linker search path
+# copy the shared library to system shared libraries search paths
 install(TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION ${LIBRARY_DESTINATION}
     PUBLIC_HEADER DESTINATION ${HEADERS_DESTINATION})
