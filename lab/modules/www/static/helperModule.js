@@ -28,4 +28,6 @@ function setElementSrc(resourceUrl, resourceLabel, elementId) {
         const element = document.getElementById(elementId);
         element.src = `${protocol}:${contentType};${encoding},${encodedData}`;
     };
-};
+}
+
+export { setElementSrc };
