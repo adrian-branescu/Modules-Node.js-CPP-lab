@@ -14,7 +14,8 @@
   "dependencies": {
     "btoa": "^1.2.1",
     "cjs-example": "file:nodejs/cjs-example",
+    "esm-example": "file:nodejs/esm-example",
     "serve": "^13.0.2"
   },
-  "type": "commonjs"
+  "type": "module"
 }
