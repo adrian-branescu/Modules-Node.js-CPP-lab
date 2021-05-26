@@ -1,0 +1,8 @@
+# NPM related
+node_modules
+package-lock.json
+
+# Typescript related
+*.d.ts
+*.js.map
+nodejs/**/*.js

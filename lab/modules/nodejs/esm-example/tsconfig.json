@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+      "target": "ES2020",
+      "module": "ES6",
+      "moduleResolution": "node",
+      "declaration": true,
+      "removeComments": false,
+      "skipLibCheck": true,
+      "lib": ["ES2020"],
+      "sourceMap": true,
+      "pretty": true,
+      "noEmitHelpers": true,
+      "alwaysStrict": true,
+      "strictNullChecks": true,
+      "strictPropertyInitialization": true,
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "noImplicitUseStrict": false,
+      "noFallthroughCasesInSwitch": true,
+      "allowSyntheticDefaultImports": true,
+      "typeRoots": [
+        "node_modules/@types"
+      ]
+    },
+    "include": [
+      "index.ts",
+    ],
+    "exclude": []
+}
