@@ -13,6 +13,6 @@
   "license": "ISC",
   "dependencies": {
     "btoa": "^1.2.1",
-    "serve": "^11.3.2"
+    "serve": "^13.0.2"
   }
 }
