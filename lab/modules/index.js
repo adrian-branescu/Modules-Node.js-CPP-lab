@@ -19,16 +19,6 @@ import { encodeBase64 } from 'esm-example';
 const url = import.meta.url;
 const __dirname = dirname(fileURLToPath(url));
 
-// Luckily Node.js implementation of ES Modules loader allows to import CommonJS modules.
-// Unfortunately, it allows just to import the default export, because CommonJS doesn't have named exports.
-import cjsExample from 'cjs-example';
-import { encodeBase64 } from 'esm-example';
-
-// This is more browser oriented, where it represents the src attribute of the script tag (absolute url).
-// In Node.js has the following format "file:///path/to/this/file.js"
-const url = import.meta.url;
-const __dirname = dirname(fileURLToPath(url));
-
 const audioFilePath = join(__dirname, 'www', 'static', 'weekend.mp3');
 
 (async () => {
